@@ -1,0 +1,53 @@
+defaultTasks 'clean', 'build'
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+version = '1.0-SNAPSHOT'
+group = 'org.suggs.sandbox.springboottest'
+
+buildscript {
+    ext {
+        springBootVersion = '2.0.3.RELEASE'
+    }
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}",
+                "net.serenity-bdd:serenity-gradle-plugin:1.9.31"
+    }
+}
+
+ext {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+repositories {
+    jcenter()
+}
+
+ext{
+    springBootVersion = '2.0.3.RELEASE'
+    serenityVersion = '1.9.31'
+}
+
+dependencies {
+
+    compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
+            'com.google.code.gson:gson:2.8.2',
+            'io.springfox:springfox-swagger2:2.9.2',
+            'io.springfox:springfox-swagger-ui:2.9.2'
+
+    testCompile 'junit:junit:4.12',
+            "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
+            'org.assertj:assertj-core:3.10.0',
+            'org.seleniumhq.selenium:selenium-server:3.13.0',
+            "net.serenity-bdd:serenity-core:${serenityVersion}",
+            "net.serenity-bdd:serenity-junit:${serenityVersion}",
+            "net.serenity-bdd:serenity-screenplay:${serenityVersion}",
+            "net.serenity-bdd:serenity-screenplay-rest:${serenityVersion}",
+            'net.serenity-bdd:serenity-cucumber:1.9.12',
+            'com.google.guava:guava:25.1-jre'
+}
