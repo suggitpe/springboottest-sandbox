@@ -1,14 +1,19 @@
 package org.suggs.sandbox.springboottest.greeting.stepdefs;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.restassured.RestAssured;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.rest.abiities.CallAnApi;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
+import org.suggs.sandbox.springboottest.ApplicationUnderTest;
 import org.suggs.sandbox.springboottest.greeting.dsl.Say;
 
 import static org.hamcrest.Matchers.is;
@@ -20,9 +25,21 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class GreetingSteps {
 
+    private ConfigurableApplicationContext application;
+
+    @Before
+    public void beforeTests() {
+        application = SpringApplication.run(ApplicationUnderTest.class);
+    }
+
+    @After
+    public void afterTests() {
+        application.stop();
+    }
+
     @LocalServerPort
-    //private int localPort = 8765;
-    private int localPort = -1;
+    private int localPort = 8765;
+    //private int localPort = -1;
 
     public static final String PRODUCER_URL = "http://localhost:";
     private Actor actor;
