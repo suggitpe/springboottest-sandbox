@@ -27,6 +27,13 @@ public class GreetingSteps {
 
     private ConfigurableApplicationContext application;
 
+    @LocalServerPort
+    private int localPort = 8765;
+    //private int localPort = -1;
+
+    public static final String PRODUCER_URL = "http://localhost:";
+    private Actor actor;
+
     @Before
     public void beforeTests() {
         application = SpringApplication.run(ApplicationUnderTest.class);
@@ -36,13 +43,6 @@ public class GreetingSteps {
     public void afterTests() {
         application.stop();
     }
-
-    @LocalServerPort
-    private int localPort = 8765;
-    //private int localPort = -1;
-
-    public static final String PRODUCER_URL = "http://localhost:";
-    private Actor actor;
 
     @Given("^the Greeting Service is running$")
     public void the_producer_is_running() {
