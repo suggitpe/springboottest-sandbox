@@ -49,5 +49,6 @@ dependencies {
             "net.serenity-bdd:serenity-screenplay:${serenityVersion}",
             "net.serenity-bdd:serenity-screenplay-rest:${serenityVersion}",
             'net.serenity-bdd:serenity-cucumber:1.9.12',
+            'io.cucumber:cucumber-spring:2.4.0',
             'com.google.guava:guava:25.1-jre'
 }
