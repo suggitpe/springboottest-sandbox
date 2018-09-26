@@ -28,19 +28,20 @@ repositories {
     jcenter()
 }
 
-ext{
+ext {
     springBootVersion = '2.0.3.RELEASE'
-    serenityVersion = '1.9.31'
+    serenityVersion = '1.9.45'
 }
 
 dependencies {
 
-    compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
-            'com.google.code.gson:gson:2.8.2',
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
             'io.springfox:springfox-swagger2:2.9.2',
             'io.springfox:springfox-swagger-ui:2.9.2'
 
-    testCompile 'junit:junit:4.12',
+    runtimeOnly 'com.google.code.gson:gson:2.8.2'
+
+    testImplementation 'junit:junit:4.12',
             "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
             'org.assertj:assertj-core:3.10.0',
             'org.seleniumhq.selenium:selenium-server:3.13.0',
@@ -48,7 +49,7 @@ dependencies {
             "net.serenity-bdd:serenity-junit:${serenityVersion}",
             "net.serenity-bdd:serenity-screenplay:${serenityVersion}",
             "net.serenity-bdd:serenity-screenplay-rest:${serenityVersion}",
-            'net.serenity-bdd:serenity-cucumber:1.9.12',
-            'io.cucumber:cucumber-spring:2.4.0',
-            'com.google.guava:guava:25.1-jre'
+            'net.serenity-bdd:serenity-cucumber:1.9.12'
+
+    testRuntimeOnly "net.serenity-bdd:serenity-spring:${serenityVersion}"
 }

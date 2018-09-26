@@ -27,8 +27,7 @@ public class GreetingSteps {
     private ConfigurableApplicationContext application;
 
     @LocalServerPort
-    private int localPort = 8765;
-    //private int localPort = -1;
+    private int localPort = -1;
 
     public static final String PRODUCER_URL = "http://localhost:";
     private Actor actor;
